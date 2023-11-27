@@ -8,11 +8,11 @@ import (
 //
 // The end-of-line sequences it supports are:
 //
-//	line-feed       (LF) (U+000A) ('\n')
-//	carriage-return (CR) (U+000D) ('\r')
+//	line-feed       (LF)  (U+000A) ('\n')
+//	carriage-return (CR)  (U+000D) ('\r')
 //	carriage-return, line-feed    ("\r\n")
-//	new-line        (NL) (U+0085)
-//	line-separator  (LS) (U+2028)
+//	next-line       (NEL) (U+0085)
+//	line-separator  (LS)  (U+2028)
 //
 // If successful, ReadEOL return the end-of-line sequence and the number-of-bytes read.
 func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error) {
@@ -37,8 +37,8 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 		return LF, size0, nil
 	case cr:
 		// Nothing here.
-	case nl:
-		return NL, size0, nil
+	case nel:
+		return NEL, size0, nil
 	case ls:
 		return LS, size0, nil
 	default:

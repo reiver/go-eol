@@ -35,7 +35,7 @@ func TestReadEOL(t *testing.T) {
 		},
 		{
 			Value: "\u0085",
-			ExpectedEOL: eol.NL,
+			ExpectedEOL: eol.NEL,
 			ExpectedSize: 2,
 		},
 		{
@@ -63,7 +63,7 @@ func TestReadEOL(t *testing.T) {
 		},
 		{
 			Value: "\u0085apple banana cherr",
-			ExpectedEOL: eol.NL,
+			ExpectedEOL: eol.NEL,
 			ExpectedSize: 2,
 		},
 		{

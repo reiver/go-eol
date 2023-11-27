@@ -1,16 +1,16 @@
 package eol
 
 const (
-	lf = '\u000A'
-	cr = '\u000D'
-	nl = '\u0085'
-	ls = '\u2028'
+	lf  = '\u000A'
+	cr  = '\u000D'
+	nel = '\u0085'
+	ls  = '\u2028'
 )
 
 const (
-	LF = string(lf)
-	CR = string(cr)
+	LF   = string(lf)
+	CR   = string(cr)
 	CRLF = CR+LF
-	NL = string(nl)
-	LS = string(ls)
+	NEL  = string(nel)
+	LS   = string(ls)
 )
