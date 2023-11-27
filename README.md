@@ -4,11 +4,11 @@ Package **eol** implements tools for working with end-of-line, for the Go progra
 
 The end-of-line sequences it supports is:
 
-* "\n"     // line-feed
-* "\r"     // carriage-return
-* "\r\n"   // carriage-return, line-feed
-* "\u0085" // next-line
-* "\u2028" // line-separator
+* `"\n"     // line-feed       (LF)`
+* `"\r"     // carriage-return (CR)`
+* `"\r\n"   // carriage-return (CR), line-feed (LF)`
+* `"\u0085" // next-line       (NEL)`
+* `"\u2028" // line-separator  (LS)`
 
 ## Documention
 
