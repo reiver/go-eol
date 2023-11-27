@@ -7,7 +7,7 @@ The end-of-line sequences it supports is:
 * "\n"     // line-feed
 * "\r"     // carriage-return
 * "\r\n"   // carriage-return, line-feed
-* "\u0085" // new-line
+* "\u0085" // next-line
 * "\u2028" // line-separator
 
 ## Documention
