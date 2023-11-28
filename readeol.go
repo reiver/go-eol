@@ -16,7 +16,7 @@ import (
 //	next-line       (NEL) (U+0085)
 //	line-separator  (LS)  (U+2028)
 //
-// If successful, ReadEOL return the end-of-line sequence and the number-of-bytes read.
+// If successful, ReadEOL return the end-of-line sequence it found and the number-of-bytes read (to read in end-of-line sequence it found).
 func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error) {
 	if nil == runescanner {
 		return "", 0, errNilRuneScanner
