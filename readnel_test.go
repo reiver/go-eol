@@ -67,103 +67,103 @@ func TestReadNEL_fail(t *testing.T) {
 	}{
 		{
 			Value: "",
-			ExpectedError: `eol: problem reading character №1 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №1 of end-of-line sequence "\u0085": EOF`,
 		},
 
 
 
 		{
 			Value: "\n",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\n' (U+000A)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\n' (U+000A)`,
 		},
 		{
 			Value: "\r",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\r' (U+000D)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\r' (U+000D)`,
 		},
 		{
 			Value: "\u2028",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\u2028' (U+2028)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\u2028' (U+2028)`,
 		},
 
 
 
 		{
 			Value: "😈",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '😈' (U+1F608)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '😈' (U+1F608)`,
 		},
 
 
 
 		{
 			Value: "\napple banana cherry",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\n' (U+000A)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\n' (U+000A)`,
 		},
 		{
 			Value: "\rapple banana cherry",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\r' (U+000D)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\r' (U+000D)`,
 		},
 		{
 			Value: "\u2028apple banana cherry",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '\u2028' (U+2028)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '\u2028' (U+2028)`,
 		},
 
 
 
 		{
 			Value: "😈apple banana cherry",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '😈' (U+1F608)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '😈' (U+1F608)`,
 		},
 
 
 
 		{
 			Value: " \n",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \r",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u0085",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u2028",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found ' ' (U+0020)`,
 		},
 
 
 
 		{
 			Value: " 😈",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found ' ' (U+0020)`,
 		},
 
 
 
 		{
 			Value: ".\n",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\r",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u0085",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u2028",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '.' (U+002E)`,
 		},
 
 
 
 		{
 			Value: ".😈",
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №1 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №1 — instead found '.' (U+002E)`,
 		},
 	}
 

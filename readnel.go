@@ -2,9 +2,12 @@ package eol
 
 import (
 	"io"
+
+	"sourcecode.social/reiver/go-opt"
 )
 
 func ReadNEL(runescanner io.RuneScanner) (size int, err error) {
-	const runeNumber = 1
-	return readthisrune(runescanner, nel, runeNumber)
+	const characterNumber uint64 = 1
+	var circumstance internalCircumstance = specifyCircumstance(opt.Something(NEL), characterNumber)
+	return readthisrune(circumstance, runescanner, nel)
 }
