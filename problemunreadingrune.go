@@ -6,26 +6,32 @@ import (
 
 var _ error = internalProblemUnreadingRuneError{}
 
-func errProblemUnreadingRune(err error, runeNumber uint64, r rune) error {
+func errProblemUnreadingRune(circumstance internalCircumstance, err error, r rune) error {
 	return internalProblemUnreadingRuneError{
 		err:err,
-		runeNumber:runeNumber,
 		r:r,
+		circumstance:circumstance,
 	}
 }
 
 type internalProblemUnreadingRuneError struct {
 	err error
-	runeNumber uint64
 	r rune
+	circumstance internalCircumstance
 }
 
 func (receiver internalProblemUnreadingRuneError) Error() string {
 	err := receiver.err
-	runeNumber := receiver.runeNumber
 	r := receiver.r
+	characterNumber := receiver.circumstance.CharacterNumber()
+	eolSequence := receiver.circumstance.EOLSequence()
 
-	return fmt.Sprintf("eol: problem unreading character №%d (%q (%U)) of end-of-line sequence: %s", runeNumber, r, r, err)
+	var s string = fmt.Sprintf("eol: problem unreading character №%d (%q (%U)) of end-of-line sequence: %s", characterNumber, r, r, err)
+	eolSequence.WhenSomething(func(sequence string){
+		s    = fmt.Sprintf("eol: problem unreading character №%d (%q (%U)) of end-of-line sequence %q: %s", characterNumber, r, r, sequence, err)
+	})
+
+	return s
 }
 
 func (receiver internalProblemUnreadingRuneError) Unwrap() error {
