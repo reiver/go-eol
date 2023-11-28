@@ -4,7 +4,7 @@ import (
 	"io"
 )
 
-func readthisrune(runescanner io.RuneScanner, expected rune, characterNumber uint64) (size int, err error) {
+func readthisrune(circumstance internalCircumstance, runescanner io.RuneScanner, expected rune) (size int, err error) {
 	if nil == runescanner {
 		return 0, errNilRuneScanner
 	}
@@ -15,7 +15,7 @@ func readthisrune(runescanner io.RuneScanner, expected rune, characterNumber uin
 
 		r, size, err = runescanner.ReadRune()
 		if nil != err {
-			return size, errProblemReadingRune(err, characterNumber)
+			return size, errProblemReadingRune(circumstance, err)
 		}
 	}
 
@@ -25,10 +25,10 @@ func readthisrune(runescanner io.RuneScanner, expected rune, characterNumber uin
 		if expected != actual {
 			err := runescanner.UnreadRune()
 			if nil != err {
-				return size, errProblemUnreadingRune(err, characterNumber, r)
+				return size, errProblemUnreadingRune(circumstance, err, r)
 			}
 
-			return 0, internalNotFoundError{expected: expected, actual: r, characterNumber:characterNumber}
+			return 0, errNotFound(circumstance, expected, actual)
 		}
 	}
 

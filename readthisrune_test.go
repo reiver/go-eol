@@ -5,6 +5,8 @@ import (
 
 	"io"
 	"strings"
+
+	"sourcecode.social/reiver/go-opt"
 	"sourcecode.social/reiver/go-utf8"
 )
 
@@ -81,8 +83,9 @@ func TestReadThisRune(t *testing.T) {
 		var reader io.Reader = strings.NewReader(test.Value)
 		var runescanner io.RuneScanner = utf8.NewRuneScanner(reader)
 
-		const runeNumber = 999
-		actualSize, err := readthisrune(runescanner, test.Rune, runeNumber)
+		const characterNumber = 999
+		circumstance := specifyCircumstance(opt.Something("UNIT-TEST"), characterNumber)
+		actualSize, err := readthisrune(circumstance, runescanner, test.Rune)
 		if nil != err {
 			t.Errorf("For test #%d, did not expect an error but actually got one.", testNumber)
 			t.Logf("ERROR: (%T) %s", err, err)
@@ -113,32 +116,37 @@ func TestReadThisRune_fail(t *testing.T) {
 	tests := []struct{
 		Value string
 		Rune rune
+		EOLSequence opt.Optional[string]
 		RuneNumber uint64
 		ExpectedError string
 	}{
 		{
 			Value: "",
 			Rune:  '\n',
+			EOLSequence: opt.Something(LF),
 			RuneNumber: 7,
-			ExpectedError: `eol: problem reading character №7 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №7 of end-of-line sequence "\n": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\r',
+			EOLSequence: opt.Something(CR),
 			RuneNumber: 8,
-			ExpectedError: `eol: problem reading character №8 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №8 of end-of-line sequence "\r": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\u0085',
+			EOLSequence: opt.Something(NEL),
 			RuneNumber: 9,
-			ExpectedError: `eol: problem reading character №9 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №9 of end-of-line sequence "\u0085": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\u2028',
+			EOLSequence: opt.Something(LS),
 			RuneNumber: 10,
-			ExpectedError: `eol: problem reading character №10 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №10 of end-of-line sequence "\u2028": EOF`,
 		},
 
 
@@ -146,8 +154,9 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: "",
 			Rune:  '😈',
+			EOLSequence: opt.Something("😈"),
 			RuneNumber: 11,
-			ExpectedError: `eol: problem reading character №11 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №11 of end-of-line sequence "😈": EOF`,
 		},
 
 
@@ -155,26 +164,30 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: " \n",
 			Rune:  '\n',
+			EOLSequence: opt.Something(LF),
 			RuneNumber: 12,
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №12 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line sequence "\n" character №12 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \r",
 			Rune:  '\r',
+			EOLSequence: opt.Something(CR),
 			RuneNumber: 13,
-			ExpectedError: `eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line character №13 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line sequence "\r" character №13 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u0085",
 			Rune:  '\u0085',
+			EOLSequence: opt.Something(NEL),
 			RuneNumber: 14,
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №14 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №14 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u2028",
 			Rune:  '\u2028',
+			EOLSequence: opt.Something(LS),
 			RuneNumber: 15,
-			ExpectedError: `eol: line-separator (LS) character (U+2028) not found for end-of-line character №15 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-separator (LS) character (U+2028) not found for end-of-line sequence "\u2028" character №15 — instead found ' ' (U+0020)`,
 		},
 
 
@@ -182,8 +195,9 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: " 😈",
 			Rune:  '😈',
+			EOLSequence: opt.Something("😈"),
 			RuneNumber: 16,
-			ExpectedError: `eol: '😈' character (U+1F608) not found for character №16 — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: '😈' character (U+1F608) not found for sequence "😈" character №16 — instead found ' ' (U+0020)`,
 		},
 
 
@@ -191,26 +205,30 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: ".\n",
 			Rune:  '\n',
+			EOLSequence: opt.Something("\n"),
 			RuneNumber: 17,
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №17 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line sequence "\n" character №17 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\r",
 			Rune:  '\r',
+			EOLSequence: opt.Something("\r"),
 			RuneNumber: 18,
-			ExpectedError: `eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line character №18 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line sequence "\r" character №18 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u0085",
 			Rune:  '\u0085',
+			EOLSequence: opt.Something("\u0085"),
 			RuneNumber: 19,
-			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line character №19 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №19 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u2028",
 			Rune:  '\u2028',
+			EOLSequence: opt.Something("\u2028"),
 			RuneNumber: 20,
-			ExpectedError: `eol: line-separator (LS) character (U+2028) not found for end-of-line character №20 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-separator (LS) character (U+2028) not found for end-of-line sequence "\u2028" character №20 — instead found '.' (U+002E)`,
 		},
 
 
@@ -218,8 +236,9 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: ".😈",
 			Rune:  '😈',
+			EOLSequence: opt.Something("😈"),
 			RuneNumber: 21,
-			ExpectedError: `eol: '😈' character (U+1F608) not found for character №21 — instead found '.' (U+002E)`,
+			ExpectedError: `eol: '😈' character (U+1F608) not found for sequence "😈" character №21 — instead found '.' (U+002E)`,
 		},
 	}
 
@@ -228,7 +247,8 @@ func TestReadThisRune_fail(t *testing.T) {
 		var reader io.Reader = strings.NewReader(test.Value)
 		var runescanner io.RuneScanner = utf8.NewRuneScanner(reader)
 
-		actualSize, err := readthisrune(runescanner, test.Rune, test.RuneNumber)
+		var circumstance internalCircumstance = specifyCircumstance(test.EOLSequence, test.RuneNumber)
+		actualSize, err := readthisrune(circumstance, runescanner, test.Rune)
 		if nil == err {
 			t.Errorf("For test #%d, expected an error but did not actually get one.", testNumber)
 			t.Logf("EXPECTED-ERROR: %q", test.ExpectedError)
