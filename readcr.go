@@ -5,5 +5,6 @@ import (
 )
 
 func ReadCR(runescanner io.RuneScanner) (size int, err error) {
-	return readthisrune(runescanner, cr)
+	const runeNumber = 1
+	return readthisrune(runescanner, cr, runeNumber)
 }

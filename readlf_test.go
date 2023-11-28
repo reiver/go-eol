@@ -67,103 +67,103 @@ func TestReadLF_fail(t *testing.T) {
 	}{
 		{
 			Value: "",
-			ExpectedError: `eol: problem reading rune №1 of end-of-line sequence: EOF`,
+			ExpectedError: `eol: problem reading character №1 of end-of-line sequence: EOF`,
 		},
 
 
 
 		{
 			Value: "\r",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\r' (U+000D)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\r' (U+000D)`,
 		},
 		{
 			Value: "\u0085",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\u0085' (U+0085)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\u0085' (U+0085)`,
 		},
 		{
 			Value: "\u2028",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\u2028' (U+2028)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\u2028' (U+2028)`,
 		},
 
 
 
 		{
 			Value: "😈",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '😈' (U+1F608)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '😈' (U+1F608)`,
 		},
 
 
 
 		{
 			Value: "\rapple banana cherry",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\r' (U+000D)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\r' (U+000D)`,
 		},
 		{
 			Value: "\u0085apple banana cherry",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\u0085' (U+0085)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\u0085' (U+0085)`,
 		},
 		{
 			Value: "\u2028apple banana cherry",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '\u2028' (U+2028)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '\u2028' (U+2028)`,
 		},
 
 
 
 		{
 			Value: "😈apple banana cherry",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '😈' (U+1F608)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '😈' (U+1F608)`,
 		},
 
 
 
 		{
 			Value: " \n",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \r",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u0085",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u2028",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
 		},
 
 
 
 		{
 			Value: " 😈",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found ' ' (U+0020)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found ' ' (U+0020)`,
 		},
 
 
 
 		{
 			Value: ".\n",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\r",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u0085",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '.' (U+002E)`,
 		},
 		{
 			Value: ".\u2028",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '.' (U+002E)`,
 		},
 
 
 
 		{
 			Value: ".😈",
-			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found — instead found '.' (U+002E)`,
+			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line character №1 — instead found '.' (U+002E)`,
 		},
 	}
 
