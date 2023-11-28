@@ -2,6 +2,8 @@ package eol
 
 import (
 	"io"
+
+	"sourcecode.social/reiver/go-opt"
 )
 
 // ReadEOL tries to read and end-of-line character.
@@ -27,8 +29,11 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 		r0, size0, err = runescanner.ReadRune()
 		if nil != err {
-			const runeNumber = 1
-			return "", size0, errProblemReadingRune(err, runeNumber)
+			const characterNumber uint64 = 1
+			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
+			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
+
+			return "", size0, errProblemReadingRune(circumstance, err)
 		}
 	}
 
@@ -44,8 +49,11 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {
-			const runeNumber = 1
-			return "", size0, errProblemUnreadingRune(err, runeNumber, r0)
+			const characterNumber uint64 = 1
+			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
+			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
+
+			return "", size0, errProblemUnreadingRune(circumstance, err, r0)
 		}
 
 		return "", 0, errNotEOL(r0)
@@ -63,8 +71,11 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 			return CR, size0, nil
 		}
 		if nil != err {
-			const runeNumber = 2
-			return "", size1+size0, errProblemReadingRune(err, runeNumber)
+			const characterNumber uint64 = 2
+			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
+			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
+
+			return "", size1+size0, errProblemReadingRune(circumstance, err)
 		}
 	}
 
@@ -74,8 +85,11 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {
-			const runeNumber = 2
-			return "", size1+size0, errProblemUnreadingRune(err, runeNumber, r1)
+			const characterNumber uint64 = 2
+			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
+			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
+
+			return "", size1+size0, errProblemUnreadingRune(circumstance, err, r1)
 		}
 
 		return CR, size0, nil
