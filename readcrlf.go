@@ -6,6 +6,16 @@ import (
 	"sourcecode.social/reiver/go-opt"
 )
 
+// ReadCRLF tries to read the "\r\n" (i.e., carriage-return line-feed) end-of-line sequence.
+//
+// If successful, it returns the number-of-bytes read (to read in end-of-line sequence "\r\n").
+//
+// If the first character read is not a '\r', then ReadCRLF will try to unread the character.
+// If the second character read is not a '\n', then ReadCRLF will also try to unread the second character, but will not be able to unread the first character (i.e., '\r') it already read.
+//
+// Example usage:
+//
+//	size, err := eol.ReadCRLF(runescanner)
 func ReadCRLF(runescanner io.RuneScanner) (size int, err error) {
 
 	var size0 int
