@@ -6,7 +6,7 @@ import (
 	"sourcecode.social/reiver/go-opt"
 )
 
-// ReadEOL tries to read and end-of-line character.
+// ReadEOL tries to read an end-of-line sequence.
 //
 // The end-of-line sequences it supports are:
 //
@@ -17,6 +17,10 @@ import (
 //	line-separator  (LS)  (U+2028)
 //
 // If successful, ReadEOL return the end-of-line sequence it found and the number-of-bytes read (to read in end-of-line sequence it found).
+//
+// Example usage:
+///
+//	eolSequence, size: err := eol.ReadEOL(runescanner)
 func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error) {
 	if nil == runescanner {
 		return "", 0, errNilRuneScanner
