@@ -20,7 +20,7 @@ import (
 //
 // Example usage:
 ///
-//	eolSequence, size: err := eol.ReadEOL(runescanner)
+//	eolSequence, size, err := eol.ReadEOL(runescanner)
 func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error) {
 	if nil == runescanner {
 		return "", 0, errNilRuneScanner
