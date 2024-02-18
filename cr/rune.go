@@ -1,5 +1,3 @@
 package cr
 
-const (
-	CR  = '\u000D'
-)
+const Rune rune  = '\u000D'

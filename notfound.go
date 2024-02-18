@@ -4,6 +4,11 @@ import (
 	"fmt"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 var _ error = internalNotFoundError{}
@@ -35,25 +40,25 @@ func (receiver internalNotFoundError) Error() string {
 	var eolSequence opt.Optional[string] = receiver.circumstance.EOLSequence()
 
 	switch expected {
-	case lf:
+	case lf.Rune:
 		var s string = fmt.Sprintf(`eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s    = fmt.Sprintf(`eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
 		})
 		p = append(p, s...)
-	case cr:
+	case cr.Rune:
 			var s string = fmt.Sprintf(`eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s            = fmt.Sprintf(`eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
 		})
 		p = append(p, s...)
-	case nel:
+	case nel.Rune:
 		var s string = fmt.Sprintf(`eol: next-line (NEL) character (U+0085) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s    = fmt.Sprintf(`eol: next-line (NEL) character (U+0085) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
 		})
 		p = append(p, s...)
-	case ls:
+	case ls.Rune:
 		var s string = fmt.Sprintf(`eol: line-separator (LS) character (U+2028) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s    = fmt.Sprintf(`eol: line-separator (LS) character (U+2028) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)

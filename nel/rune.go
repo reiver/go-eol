@@ -1,5 +1,3 @@
 package nel
 
-const (
-	NEL = '\u0085'
-)
+const Rune = '\u0085'

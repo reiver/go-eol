@@ -4,6 +4,9 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
 )
 
 // ReadCRLF tries to read the "\r\n" (i.e., carriage-return line-feed) end-of-line sequence.
@@ -24,7 +27,7 @@ func ReadCRLF(runescanner io.RuneScanner) (size int, err error) {
 
 		const characterNumber uint64 = 1
 		var circumstance internalCircumstance = specifyCircumstance(opt.Something(CRLF), characterNumber)
-		size0, err = readthisrune(circumstance, runescanner, cr)
+		size0, err = readthisrune(circumstance, runescanner, cr.Rune)
 		if nil != err {
 			return size0, err
 		}
@@ -36,7 +39,7 @@ func ReadCRLF(runescanner io.RuneScanner) (size int, err error) {
 
 		const characterNumber uint64 = 2
 		var circumstance internalCircumstance = specifyCircumstance(opt.Something(CRLF), characterNumber)
-		size1, err = readthisrune(circumstance, runescanner, lf)
+		size1, err = readthisrune(circumstance, runescanner, lf.Rune)
 		if nil != err {
 			return size1+size0, err
 		}

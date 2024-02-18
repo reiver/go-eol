@@ -4,6 +4,8 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/ls"
 )
 
 // ReadLS tries to read the "\u2028" (i.e., line-separator) end-of-line sequence.
@@ -18,5 +20,5 @@ import (
 func ReadLS(runescanner io.RuneScanner) (size int, err error) {
 	const characterNumber uint64 = 1
 	var circumstance internalCircumstance = specifyCircumstance(opt.Something(LS), characterNumber)
-	return readthisrune(circumstance, runescanner, ls)
+	return readthisrune(circumstance, runescanner, ls.Rune)
 }

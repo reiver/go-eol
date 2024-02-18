@@ -4,6 +4,8 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/cr"
 )
 
 // ReadCR tries to read the "\r" (i.e., carriage-return) end-of-line sequence.
@@ -18,5 +20,5 @@ import (
 func ReadCR(runescanner io.RuneScanner) (size int, err error) {
 	const characterNumber uint64 = 1
 	var circumstance internalCircumstance = specifyCircumstance(opt.Something(CR), characterNumber)
-	return readthisrune(circumstance, runescanner, cr)
+	return readthisrune(circumstance, runescanner, cr.Rune)
 }

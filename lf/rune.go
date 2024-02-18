@@ -1,5 +1,3 @@
 package lf
 
-const (
-	LF  = '\u000A'
-)
+const Rune  = '\u000A'

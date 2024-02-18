@@ -4,6 +4,8 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/lf"
 )
 
 // ReadLF tries to read the "\n" (i.e., line-feed) end-of-line sequence.
@@ -18,5 +20,5 @@ import (
 func ReadLF(runescanner io.RuneScanner) (size int, err error) {
 	const characterNumber uint64 = 1
 	var circumstance internalCircumstance = specifyCircumstance(opt.Something(LF), characterNumber)
-	return readthisrune(circumstance, runescanner, lf)
+	return readthisrune(circumstance, runescanner, lf.Rune)
 }

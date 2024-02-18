@@ -1,5 +1,3 @@
 package ls
 
-const (
-	lS  = '\u2028'
-)
+const Rune  = '\u2028'

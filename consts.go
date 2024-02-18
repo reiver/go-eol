@@ -1,16 +1,16 @@
 package eol
 
-const (
-	lf  = '\u000A'
-	cr  = '\u000D'
-	nel = '\u0085'
-	ls  = '\u2028'
+import (
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 const (
-	LF   = string(lf)
-	CR   = string(cr)
+	LF   = string(lf.Rune)
+	CR   = string(cr.Rune)
 	CRLF = CR+LF
-	NEL  = string(nel)
-	LS   = string(ls)
+	NEL  = string(nel.Rune)
+	LS   = string(ls.Rune)
 )

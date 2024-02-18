@@ -4,6 +4,11 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 // ReadEOL tries to read an end-of-line sequence.
@@ -42,13 +47,13 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 	}
 
 	switch r0 {
-	case lf:
+	case lf.Rune:
 		return LF, size0, nil
-	case cr:
+	case cr.Rune:
 		// Nothing here.
-	case nel:
+	case nel.Rune:
 		return NEL, size0, nil
-	case ls:
+	case ls.Rune:
 		return LS, size0, nil
 	default:
 		err := runescanner.UnreadRune()
@@ -84,7 +89,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 	}
 
 	switch r1 {
-	case lf:
+	case lf.Rune:
 		return CRLF, size1+size0, nil
 	default:
 		err := runescanner.UnreadRune()

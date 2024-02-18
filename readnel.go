@@ -4,6 +4,8 @@ import (
 	"io"
 
 	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 // ReadNEL tries to read the "\u0085" (i.e., next-line) end-of-line sequence.
@@ -18,5 +20,5 @@ import (
 func ReadNEL(runescanner io.RuneScanner) (size int, err error) {
 	const characterNumber uint64 = 1
 	var circumstance internalCircumstance = specifyCircumstance(opt.Something(NEL), characterNumber)
-	return readthisrune(circumstance, runescanner, nel)
+	return readthisrune(circumstance, runescanner, nel.Rune)
 }
