@@ -12,6 +12,7 @@ import (
 	"sourcecode.social/reiver/go-eol/cr"
 	"sourcecode.social/reiver/go-eol/crlf"
 	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/lfcr"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
 )
@@ -27,6 +28,11 @@ func TestReadEOL(t *testing.T) {
 			Value: "\n",
 			ExpectedEOL: lf.String,
 			ExpectedSize: 1,
+		},
+		{
+			Value: "\n\r",
+			ExpectedEOL: lfcr.String,
+			ExpectedSize: 2,
 		},
 		{
 			Value: "\r",
@@ -55,6 +61,11 @@ func TestReadEOL(t *testing.T) {
 			Value: "\napple banana cherry",
 			ExpectedEOL: lf.String,
 			ExpectedSize: 1,
+		},
+		{
+			Value: "\n\rapple banana cherr",
+			ExpectedEOL: lfcr.String,
+			ExpectedSize: 2,
 		},
 		{
 			Value: "\rapple banana cherr",

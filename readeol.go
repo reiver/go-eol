@@ -8,6 +8,7 @@ import (
 	"sourcecode.social/reiver/go-eol/cr"
 	"sourcecode.social/reiver/go-eol/crlf"
 	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/lfcr"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
 )
@@ -17,8 +18,9 @@ import (
 // The end-of-line sequences it supports are:
 //
 //	line-feed       (LF)  (U+000A) ('\n')
+//	line-feed, carriage-return     ("\n\r")
 //	carriage-return (CR)  (U+000D) ('\r')
-//	carriage-return, line-feed    ("\r\n")
+//	carriage-return, line-feed     ("\r\n")
 //	next-line       (NEL) (U+0085)
 //	line-separator  (LS)  (U+2028)
 //
@@ -38,7 +40,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 		var err error
 
 		r0, size0, err = runescanner.ReadRune()
-		if nil != err {
+		if nil != err && size0 <= 0 {
 			const characterNumber uint64 = 1
 			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
 			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
@@ -49,7 +51,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 	switch r0 {
 	case lf.Rune:
-		return lf.String, size0, nil
+		// Nothing here.
 	case cr.Rune:
 		// Nothing here.
 	case nel.Rune:
@@ -69,7 +71,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 		return "", 0, errNotEOL(r0)
 	}
 
-	// if we got here, then we had a CR
+	// if we got here, then we had a LR or CR
 
 	var r1 rune
 	var size1 int
@@ -78,9 +80,9 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 		r1, size1, err = runescanner.ReadRune()
 		if io.EOF == err {
-			return cr.String, size0, nil
+			return string(r0), size0, nil
 		}
-		if nil != err {
+		if nil != err && size1 <= 0 {
 			const characterNumber uint64 = 2
 			var eolSequence opt.Optional[string] // = opt.Nothing[string]() // i.e., unknown
 			var circumstance internalCircumstance = specifyCircumstance(eolSequence, characterNumber)
@@ -89,9 +91,11 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 		}
 	}
 
-	switch r1 {
-	case lf.Rune:
+	switch {
+	case cr.Rune == r0 && lf.Rune == r1:
 		return crlf.String, size1+size0, nil
+	case lf.Rune == r0 && cr.Rune == r1:
+		return lfcr.String, size1+size0, nil
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {
@@ -102,6 +106,6 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 			return "", size1+size0, errProblemUnreadingRune(circumstance, err, r1)
 		}
 
-		return cr.String, size0, nil
+		return string(r0), size0, nil
 	}
 }
