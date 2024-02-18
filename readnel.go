@@ -19,6 +19,6 @@ import (
 //	size, err := eol.ReadNEL(runescanner)
 func ReadNEL(runescanner io.RuneScanner) (size int, err error) {
 	const characterNumber uint64 = 1
-	var circumstance internalCircumstance = specifyCircumstance(opt.Something(NEL), characterNumber)
+	var circumstance internalCircumstance = specifyCircumstance(opt.Something(nel.String), characterNumber)
 	return readthisrune(circumstance, runescanner, nel.Rune)
 }

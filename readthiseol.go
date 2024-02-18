@@ -2,6 +2,12 @@ package eol
 
 import (
 	"io"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/crlf"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 // ReadThisEOL tries to read the specified end-of-line sequence.
@@ -25,15 +31,15 @@ func ReadThisEOL(runescanner io.RuneScanner, endofline string) (size int, err er
 	}
 
 	switch endofline {
-	case LF:
+	case lf.String:
 		return ReadLF(runescanner)
-	case CR:
+	case cr.String:
 		return ReadCR(runescanner)
-	case CRLF:
+	case crlf.String:
 		return ReadCRLF(runescanner)
-	case NEL:
+	case nel.String:
 		return ReadNEL(runescanner)
-	case LS:
+	case ls.String:
 		return ReadLS(runescanner)
 	default:
 		return 0, errUnrecognizedEOL(endofline)

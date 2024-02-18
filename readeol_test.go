@@ -9,6 +9,11 @@ import (
 	"sourcecode.social/reiver/go-utf8"
 
 	"sourcecode.social/reiver/go-eol"
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/crlf"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 func TestReadEOL(t *testing.T) {
@@ -20,27 +25,27 @@ func TestReadEOL(t *testing.T) {
 	}{
 		{
 			Value: "\n",
-			ExpectedEOL: eol.LF,
+			ExpectedEOL: lf.String,
 			ExpectedSize: 1,
 		},
 		{
 			Value: "\r",
-			ExpectedEOL: eol.CR,
+			ExpectedEOL: cr.String,
 			ExpectedSize: 1,
 		},
 		{
 			Value: "\r\n",
-			ExpectedEOL: eol.CRLF,
+			ExpectedEOL: crlf.String,
 			ExpectedSize: 2,
 		},
 		{
 			Value: "\u0085",
-			ExpectedEOL: eol.NEL,
+			ExpectedEOL: nel.String,
 			ExpectedSize: 2,
 		},
 		{
 			Value: "\u2028",
-			ExpectedEOL: eol.LS,
+			ExpectedEOL: ls.String,
 			ExpectedSize: 3,
 		},
 
@@ -48,27 +53,27 @@ func TestReadEOL(t *testing.T) {
 
 		{
 			Value: "\napple banana cherry",
-			ExpectedEOL: eol.LF,
+			ExpectedEOL: lf.String,
 			ExpectedSize: 1,
 		},
 		{
 			Value: "\rapple banana cherr",
-			ExpectedEOL: eol.CR,
+			ExpectedEOL: cr.String,
 			ExpectedSize: 1,
 		},
 		{
 			Value: "\r\napple banana cherr",
-			ExpectedEOL: eol.CRLF,
+			ExpectedEOL: crlf.String,
 			ExpectedSize: 2,
 		},
 		{
 			Value: "\u0085apple banana cherr",
-			ExpectedEOL: eol.NEL,
+			ExpectedEOL: nel.String,
 			ExpectedSize: 2,
 		},
 		{
 			Value: "\u2028apple banana cherr",
-			ExpectedEOL: eol.LS,
+			ExpectedEOL: ls.String,
 			ExpectedSize: 3,
 		},
 	}

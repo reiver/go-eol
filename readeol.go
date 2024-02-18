@@ -6,6 +6,7 @@ import (
 	"sourcecode.social/reiver/go-opt"
 
 	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/crlf"
 	"sourcecode.social/reiver/go-eol/lf"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
@@ -48,13 +49,13 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 	switch r0 {
 	case lf.Rune:
-		return LF, size0, nil
+		return lf.String, size0, nil
 	case cr.Rune:
 		// Nothing here.
 	case nel.Rune:
-		return NEL, size0, nil
+		return nel.String, size0, nil
 	case ls.Rune:
-		return LS, size0, nil
+		return ls.String, size0, nil
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {
@@ -77,7 +78,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 		r1, size1, err = runescanner.ReadRune()
 		if io.EOF == err {
-			return CR, size0, nil
+			return cr.String, size0, nil
 		}
 		if nil != err {
 			const characterNumber uint64 = 2
@@ -90,7 +91,7 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 
 	switch r1 {
 	case lf.Rune:
-		return CRLF, size1+size0, nil
+		return crlf.String, size1+size0, nil
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {
@@ -101,6 +102,6 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 			return "", size1+size0, errProblemUnreadingRune(circumstance, err, r1)
 		}
 
-		return CR, size0, nil
+		return cr.String, size0, nil
 	}
 }

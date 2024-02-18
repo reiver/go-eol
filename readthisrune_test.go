@@ -8,6 +8,11 @@ import (
 
 	"sourcecode.social/reiver/go-opt"
 	"sourcecode.social/reiver/go-utf8"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/ls"
+	"sourcecode.social/reiver/go-eol/nel"
 )
 
 func TestReadThisRune(t *testing.T) {
@@ -123,28 +128,28 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: "",
 			Rune:  '\n',
-			EOLSequence: opt.Something(LF),
+			EOLSequence: opt.Something(lf.String),
 			RuneNumber: 7,
 			ExpectedError: `eol: problem reading character №7 of end-of-line sequence "\n": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\r',
-			EOLSequence: opt.Something(CR),
+			EOLSequence: opt.Something(cr.String),
 			RuneNumber: 8,
 			ExpectedError: `eol: problem reading character №8 of end-of-line sequence "\r": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\u0085',
-			EOLSequence: opt.Something(NEL),
+			EOLSequence: opt.Something(nel.String),
 			RuneNumber: 9,
 			ExpectedError: `eol: problem reading character №9 of end-of-line sequence "\u0085": EOF`,
 		},
 		{
 			Value: "",
 			Rune:  '\u2028',
-			EOLSequence: opt.Something(LS),
+			EOLSequence: opt.Something(ls.String),
 			RuneNumber: 10,
 			ExpectedError: `eol: problem reading character №10 of end-of-line sequence "\u2028": EOF`,
 		},
@@ -164,28 +169,28 @@ func TestReadThisRune_fail(t *testing.T) {
 		{
 			Value: " \n",
 			Rune:  '\n',
-			EOLSequence: opt.Something(LF),
+			EOLSequence: opt.Something(lf.String),
 			RuneNumber: 12,
 			ExpectedError: `eol: line-feed (LF) character ('\n') (U+000A) not found for end-of-line sequence "\n" character №12 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \r",
 			Rune:  '\r',
-			EOLSequence: opt.Something(CR),
+			EOLSequence: opt.Something(cr.String),
 			RuneNumber: 13,
 			ExpectedError: `eol: carriage-return (CR) character ('\r') (U+000D) not found for end-of-line sequence "\r" character №13 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u0085",
 			Rune:  '\u0085',
-			EOLSequence: opt.Something(NEL),
+			EOLSequence: opt.Something(nel.String),
 			RuneNumber: 14,
 			ExpectedError: `eol: next-line (NEL) character (U+0085) not found for end-of-line sequence "\u0085" character №14 — instead found ' ' (U+0020)`,
 		},
 		{
 			Value: " \u2028",
 			Rune:  '\u2028',
-			EOLSequence: opt.Something(LS),
+			EOLSequence: opt.Something(ls.String),
 			RuneNumber: 15,
 			ExpectedError: `eol: line-separator (LS) character (U+2028) not found for end-of-line sequence "\u2028" character №15 — instead found ' ' (U+0020)`,
 		},

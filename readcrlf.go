@@ -6,6 +6,7 @@ import (
 	"sourcecode.social/reiver/go-opt"
 
 	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/crlf"
 	"sourcecode.social/reiver/go-eol/lf"
 )
 
@@ -26,7 +27,7 @@ func ReadCRLF(runescanner io.RuneScanner) (size int, err error) {
 		var err error
 
 		const characterNumber uint64 = 1
-		var circumstance internalCircumstance = specifyCircumstance(opt.Something(CRLF), characterNumber)
+		var circumstance internalCircumstance = specifyCircumstance(opt.Something(crlf.String), characterNumber)
 		size0, err = readthisrune(circumstance, runescanner, cr.Rune)
 		if nil != err {
 			return size0, err
@@ -38,7 +39,7 @@ func ReadCRLF(runescanner io.RuneScanner) (size int, err error) {
 		var err error
 
 		const characterNumber uint64 = 2
-		var circumstance internalCircumstance = specifyCircumstance(opt.Something(CRLF), characterNumber)
+		var circumstance internalCircumstance = specifyCircumstance(opt.Something(crlf.String), characterNumber)
 		size1, err = readthisrune(circumstance, runescanner, lf.Rune)
 		if nil != err {
 			return size1+size0, err
