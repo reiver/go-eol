@@ -1,0 +1,50 @@
+package eol
+
+import (
+	"io"
+
+	"sourcecode.social/reiver/go-opt"
+
+	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/lf"
+	"sourcecode.social/reiver/go-eol/lfcr"
+)
+
+// ReadLFCR tries to read the "\r\n" (i.e., carriage-return line-feed) end-of-line sequence.
+//
+// If successful, it returns the number-of-bytes read (to read in end-of-line sequence "\r\n").
+//
+// If the first character read is not a '\n', then ReadLFCR will try to unread the character.
+// If the second character read is not a '\r', then ReadLFCR will also try to unread the second character, but will not be able to unread the first character (i.e., '\n') it already read.
+//
+// Example usage:
+//
+//	size, err := eol.ReadLFCR(runescanner)
+func ReadLFCR(runescanner io.RuneScanner) (size int, err error) {
+
+	var size0 int
+	{
+		var err error
+
+		const characterNumber uint64 = 1
+		var circumstance internalCircumstance = specifyCircumstance(opt.Something(lfcr.String), characterNumber)
+		size0, err = readthisrune(circumstance, runescanner, lf.Rune)
+		if nil != err {
+			return size0, err
+		}
+	}
+
+	var size1 int
+	{
+		var err error
+
+		const characterNumber uint64 = 2
+		var circumstance internalCircumstance = specifyCircumstance(opt.Something(lfcr.String), characterNumber)
+		size1, err = readthisrune(circumstance, runescanner, cr.Rune)
+		if nil != err {
+			return size1+size0, err
+		}
+	}
+
+	return size1+size0, nil
+}
