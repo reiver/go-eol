@@ -31,14 +31,14 @@ func TestReadEOL(t *testing.T) {
 			ExpectedSize: 1,
 		},
 		{
-			Value: "\v",
-			ExpectedEOL: vt.String,
-			ExpectedSize: 1,
-		},
-		{
 			Value: "\n\r",
 			ExpectedEOL: lfcr.String,
 			ExpectedSize: 2,
+		},
+		{
+			Value: "\v",
+			ExpectedEOL: vt.String,
+			ExpectedSize: 1,
 		},
 		{
 			Value: "\r",
