@@ -1,6 +1,6 @@
 # go-eol
 
-Package **eol** implements tools for working with end-of-line, for the Go programming language.
+Package **eol** implements tools for working with end-of-line characters, for the Go programming language.
 
 The end-of-line sequences it supports is:
 
@@ -51,4 +51,4 @@ GOPROXY=direct go get https://sourcecode.social/reiver/go-eol
 
 ## Author
 
-Package **eol** was written by [Charles Iliya Krempeaux](http://changelog.ca)
+Package **eol** was written by [Charles Iliya Krempeaux](http://reiver.link)
