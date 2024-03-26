@@ -11,6 +11,7 @@ import (
 	"sourcecode.social/reiver/go-eol/lfcr"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
+	"sourcecode.social/reiver/go-eol/vt"
 )
 
 // ReadEOL tries to read an end-of-line sequence.
@@ -18,6 +19,7 @@ import (
 // The end-of-line sequences it supports are:
 //
 //	line-feed       (LF)  (U+000A) ('\n')
+//	vertical-tab    (VT)  (U+000B) ('\v')
 //	line-feed, carriage-return     ("\n\r")
 //	carriage-return (CR)  (U+000D) ('\r')
 //	carriage-return, line-feed     ("\r\n")
@@ -52,6 +54,8 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 	switch r0 {
 	case lf.Rune:
 		// Nothing here.
+	case vt.Rune:
+		return vt.String, size0, nil
 	case cr.Rune:
 		// Nothing here.
 	case nel.Rune:

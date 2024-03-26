@@ -28,6 +28,8 @@ import (
 //
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\n"), 1)
 //
+//	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\v"), 1)
+//
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\r"), 1)
 //
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\r\n"), 1)
