@@ -8,11 +8,11 @@ import (
 	"sourcecode.social/reiver/go-eol/vt"
 )
 
-// ReadVT tries to read the "\r" (i.e., carriage-return) end-of-line sequence.
+// ReadVT tries to read the "\v" (i.e., carriage-return) end-of-line sequence.
 //
-// If successful, it returns the number-of-bytes read (to read in end-of-line sequence "\r").
+// If successful, it returns the number-of-bytes read (to read in end-of-line sequence "\v").
 //
-// If the character read is not a '\r', then ReadVT will try to unread the character.
+// If the character read is not a '\v', then ReadVT will try to unread the character.
 //
 // Example usage:
 //

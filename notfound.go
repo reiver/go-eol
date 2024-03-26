@@ -6,6 +6,7 @@ import (
 	"sourcecode.social/reiver/go-opt"
 
 	"sourcecode.social/reiver/go-eol/cr"
+	"sourcecode.social/reiver/go-eol/ff"
 	"sourcecode.social/reiver/go-eol/lf"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
@@ -51,6 +52,12 @@ func (receiver internalNotFoundError) Error() string {
 		var s string = fmt.Sprintf(`eol: vertical-tab (VT) character ('\v') (U+000B) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s    = fmt.Sprintf(`eol: vertical-tab (VT) character ('\v') (U+000B) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
+		})
+		p = append(p, s...)
+	case ff.Rune:
+		var s string = fmt.Sprintf(`eol: form-feed (FF) character ('\f') (U+000C) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
+		eolSequence.WhenSomething(func(sequence string){
+			s    = fmt.Sprintf(`eol: form-feed (FF) character ('\f') (U+000C) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
 		})
 		p = append(p, s...)
 	case cr.Rune:
