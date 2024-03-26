@@ -11,10 +11,14 @@ import (
 // Example end-of-line sequences are:
 //
 //	• "\n"
+//	• "\n\r"
+//	• "\v"
+//	• "\f"
 //	• "\r"
 //	• "\r\n"
 //	• "\u0085"
 //	• "\u2028"
+//	• "\u2029"
 //
 // No end-of-line sequence can also be specified if it is unknown.
 // For example eol.ReadEOL() does NOT know the end-of-line sequence ahead of time.
@@ -29,6 +33,8 @@ import (
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\n"), 1)
 //
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\v"), 1)
+//
+//	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\f"), 1)
 //
 //	var circumstance internalCircumstance = specifyCircumstance(opt.Something]("\r"), 1)
 //

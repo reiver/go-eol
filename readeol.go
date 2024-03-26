@@ -12,6 +12,7 @@ import (
 	"sourcecode.social/reiver/go-eol/lfcr"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
+	"sourcecode.social/reiver/go-eol/ps"
 	"sourcecode.social/reiver/go-eol/vt"
 )
 
@@ -27,6 +28,7 @@ import (
 //	carriage-return, line-feed     ("\r\n")
 //	next-line       (NEL) (U+0085)
 //	line-separator  (LS)  (U+2028)
+//	line-separator  (LS)  (U+2029)
 //
 // If successful, ReadEOL return the end-of-line sequence it found and the number-of-bytes read (to read in end-of-line sequence it found).
 //
@@ -66,6 +68,8 @@ func ReadEOL(runescanner io.RuneScanner) (endofline string, size int, err error)
 		return nel.String, size0, nil
 	case ls.Rune:
 		return ls.String, size0, nil
+	case ps.Rune:
+		return ps.String, size0, nil
 	default:
 		err := runescanner.UnreadRune()
 		if nil != err {

@@ -10,6 +10,7 @@ import (
 	"sourcecode.social/reiver/go-eol/lf"
 	"sourcecode.social/reiver/go-eol/ls"
 	"sourcecode.social/reiver/go-eol/nel"
+	"sourcecode.social/reiver/go-eol/ps"
 	"sourcecode.social/reiver/go-eol/vt"
 )
 
@@ -76,6 +77,12 @@ func (receiver internalNotFoundError) Error() string {
 		var s string = fmt.Sprintf(`eol: line-separator (LS) character (U+2028) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
 		eolSequence.WhenSomething(func(sequence string){
 			s    = fmt.Sprintf(`eol: line-separator (LS) character (U+2028) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
+		})
+		p = append(p, s...)
+	case ps.Rune:
+		var s string = fmt.Sprintf(`eol: paragraph-separator (PS) character (U+2029) not found for end-of-line sequence character №%d — instead found %q (%U)`, characterNumber, actual, actual)
+		eolSequence.WhenSomething(func(sequence string){
+			s    = fmt.Sprintf(`eol: paragraph-separator (PS) character (U+2029) not found for end-of-line sequence %q character №%d — instead found %q (%U)`, sequence, characterNumber, actual, actual)
 		})
 		p = append(p, s...)
 	default:
