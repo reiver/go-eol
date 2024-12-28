@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/ff"
+	"github.com/reiver/go-eol/ff"
 )
 
 // ReadFF tries to read the "\f" (i.e., form-feed) end-of-line sequence.

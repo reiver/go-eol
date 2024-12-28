@@ -1,8 +1,8 @@
 package crlf
 
 import (
-	"sourcecode.social/reiver/go-eol/cr"
-	"sourcecode.social/reiver/go-eol/lf"
+	"github.com/reiver/go-eol/cr"
+	"github.com/reiver/go-eol/lf"
 )
 
 const String string  = cr.String + lf.String

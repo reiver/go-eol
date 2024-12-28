@@ -1,7 +1,7 @@
 package eol
 
 import (
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 )
 
 // internalCircumstance is primarily used to help to create informative error messages.

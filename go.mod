@@ -1,9 +1,16 @@
-module sourcecode.social/reiver/go-eol
+module github.com/reiver/go-eol
 
-go 1.20
+go 1.22.4
+
+toolchain go1.23.4
 
 require (
-	sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1 // indirect
-	sourcecode.social/reiver/go-opt v0.0.0-20231106172254-6b4ca5231f41 // indirect
-	sourcecode.social/reiver/go-utf8 v0.0.0-20230818133704-d38de8eb477f // indirect
+	github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f
+	github.com/reiver/go-opt v0.0.0-20240809035328-1ff08dec9bc4
+	github.com/reiver/go-utf8 v2.0.2-0.20240825112455-f6c2bd439d4f+incompatible
+)
+
+require (
+	github.com/reiver/go-json v0.0.0-20240809035039-2f83bc2e8c10 // indirect
+	github.com/reiver/go-lck v0.0.0-20240808133902-b56df221c39f // indirect
 )

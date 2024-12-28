@@ -3,11 +3,11 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-eol/cr"
-	"sourcecode.social/reiver/go-eol/crlf"
-	"sourcecode.social/reiver/go-eol/lf"
-	"sourcecode.social/reiver/go-eol/ls"
-	"sourcecode.social/reiver/go-eol/nel"
+	"github.com/reiver/go-eol/cr"
+	"github.com/reiver/go-eol/crlf"
+	"github.com/reiver/go-eol/lf"
+	"github.com/reiver/go-eol/ls"
+	"github.com/reiver/go-eol/nel"
 )
 
 // ReadThisEOL tries to read the specified end-of-line sequence.

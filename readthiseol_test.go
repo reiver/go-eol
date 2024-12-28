@@ -6,9 +6,9 @@ import (
 	"io"
 	"strings"
 
-	"sourcecode.social/reiver/go-utf8"
+	"github.com/reiver/go-utf8"
 
-	"sourcecode.social/reiver/go-eol"
+	"github.com/reiver/go-eol"
 )
 
 func TestReadThisEOL(t *testing.T) {

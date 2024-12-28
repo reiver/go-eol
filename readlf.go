@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/lf"
+	"github.com/reiver/go-eol/lf"
 )
 
 // ReadLF tries to read the "\n" (i.e., line-feed) end-of-line sequence.

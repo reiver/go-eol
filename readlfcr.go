@@ -3,11 +3,11 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/cr"
-	"sourcecode.social/reiver/go-eol/lf"
-	"sourcecode.social/reiver/go-eol/lfcr"
+	"github.com/reiver/go-eol/cr"
+	"github.com/reiver/go-eol/lf"
+	"github.com/reiver/go-eol/lfcr"
 )
 
 // ReadLFCR tries to read the "\r\n" (i.e., carriage-return line-feed) end-of-line sequence.

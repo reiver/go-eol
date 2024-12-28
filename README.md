@@ -16,16 +16,16 @@ The end-of-line sequences it supports is:
 
 ## Documention
 
-Online documentation, which includes examples, can be found at: http://godoc.org/sourcecode.social/reiver/go-eol
+Online documentation, which includes examples, can be found at: http://godoc.org/github.com/reiver/go-eol
 
-[![GoDoc](https://godoc.org/sourcecode.social/reiver/go-eol?status.svg)](https://godoc.org/sourcecode.social/reiver/go-eol)
+[![GoDoc](https://godoc.org/github.com/reiver/go-eol?status.svg)](https://godoc.org/github.com/reiver/go-eol)
 
 ## Example
 
 Here is an example:
 ```golang
 
-import "sourcecode.social/reiver/go-eol"
+import "github.com/reiver/go-eol"
 
 // ...
 
@@ -39,14 +39,14 @@ if nil != err {
 
 To import package **eol** use `import` code like the follownig:
 ```
-import "sourcecode.social/reiver/go-eol"
+import "github.com/reiver/go-eol"
 ```
 
 ## Installation
 
 To install package **eol** do the following:
 ```
-GOPROXY=direct go get https://sourcecode.social/reiver/go-eol
+GOPROXY=direct go get https://github.com/reiver/go-eol
 ```
 
 ## Author

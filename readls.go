@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/ls"
+	"github.com/reiver/go-eol/ls"
 )
 
 // ReadLS tries to read the "\u2028" (i.e., line-separator) end-of-line sequence.

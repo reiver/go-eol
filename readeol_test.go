@@ -6,18 +6,18 @@ import (
 	"io"
 	"strings"
 
-	"sourcecode.social/reiver/go-utf8"
+	"github.com/reiver/go-utf8"
 
-	"sourcecode.social/reiver/go-eol"
-	"sourcecode.social/reiver/go-eol/cr"
-	"sourcecode.social/reiver/go-eol/crlf"
-	"sourcecode.social/reiver/go-eol/ff"
-	"sourcecode.social/reiver/go-eol/lf"
-	"sourcecode.social/reiver/go-eol/lfcr"
-	"sourcecode.social/reiver/go-eol/ls"
-	"sourcecode.social/reiver/go-eol/nel"
-	"sourcecode.social/reiver/go-eol/ps"
-	"sourcecode.social/reiver/go-eol/vt"
+	"github.com/reiver/go-eol"
+	"github.com/reiver/go-eol/cr"
+	"github.com/reiver/go-eol/crlf"
+	"github.com/reiver/go-eol/ff"
+	"github.com/reiver/go-eol/lf"
+	"github.com/reiver/go-eol/lfcr"
+	"github.com/reiver/go-eol/ls"
+	"github.com/reiver/go-eol/nel"
+	"github.com/reiver/go-eol/ps"
+	"github.com/reiver/go-eol/vt"
 )
 
 func TestReadEOL(t *testing.T) {

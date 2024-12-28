@@ -1,6 +1,10 @@
-sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1 h1:wpnz4JicQBLWrgGphYBls7DysIFCcnWgDz/vce/sY8E=
-sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1/go.mod h1:NFtd7fzEf0r6A6R7JXYZfayRhPaJy0zt/18VWoLzrxA=
-sourcecode.social/reiver/go-opt v0.0.0-20231106172254-6b4ca5231f41 h1:nWUCtY3Krm+bLKXEEFvVz+vm256v3D/iJXgfoWhcOEw=
-sourcecode.social/reiver/go-opt v0.0.0-20231106172254-6b4ca5231f41/go.mod h1:O6WKM2UcKkheRT/dA6A2b1tW0m+WenSbxdcXE+idxzI=
-sourcecode.social/reiver/go-utf8 v0.0.0-20230818133704-d38de8eb477f h1:fVoIT3wG97EMKMDpR5KU4b5uwFKLl5e9AOV72o45M0k=
-sourcecode.social/reiver/go-utf8 v0.0.0-20230818133704-d38de8eb477f/go.mod h1:xZZIkdX6xIkkzalD1YTiM1F3Os9xPaIY7z9s6EBDmCI=
+github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f h1:D1QSxKHm8U73XhjsW3SFLkT0zT5pKJi+1KGboMhY1Rk=
+github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f/go.mod h1:F0HbBf+Ak2ZlE8YkDW4Y+KxaUmT0KaaIJK6CXY3cJxE=
+github.com/reiver/go-json v0.0.0-20240809035039-2f83bc2e8c10 h1:LbFL8s+beVbEfnCymQAbRVtG8ihlL67XKvqM17EqGK0=
+github.com/reiver/go-json v0.0.0-20240809035039-2f83bc2e8c10/go.mod h1:ns4kpzbK+OyMUZYT8UmBxrsYWNmvB/irZGmyIh99cxY=
+github.com/reiver/go-lck v0.0.0-20240808133902-b56df221c39f h1:KBVWBoNIM8mHkUR3dP64hm2p2vxoD5xHZ6wUllCjFTc=
+github.com/reiver/go-lck v0.0.0-20240808133902-b56df221c39f/go.mod h1:PFseSi8S0CBkc+YB6jYWtogPk83LumclnYJZZBQJJhs=
+github.com/reiver/go-opt v0.0.0-20240809035328-1ff08dec9bc4 h1:KQ/PDBRaJb69hmMmOs/jM8q679y9v51lY7tjX2FUkog=
+github.com/reiver/go-opt v0.0.0-20240809035328-1ff08dec9bc4/go.mod h1:3lRqhDIwZ4OaMNN6Z5rmHCX8up18IkLGuw2rxP9GrYo=
+github.com/reiver/go-utf8 v2.0.2-0.20240825112455-f6c2bd439d4f+incompatible h1:UnOzxDADv3uDI9QB8xh3ZAAmnaWyp7NlV2ny7K8FlG0=
+github.com/reiver/go-utf8 v2.0.2-0.20240825112455-f6c2bd439d4f+incompatible/go.mod h1:tfGntNDUeEZIAsz0mTu0lF7/IlErc+BpQgO6yxYmJig=

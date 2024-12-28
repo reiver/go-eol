@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/ps"
+	"github.com/reiver/go-eol/ps"
 )
 
 // ReadPS tries to read the "\r" (i.e., carriage-return) end-of-line sequence.

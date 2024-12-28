@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/vt"
+	"github.com/reiver/go-eol/vt"
 )
 
 // ReadVT tries to read the "\v" (i.e., carriage-return) end-of-line sequence.

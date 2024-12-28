@@ -3,9 +3,9 @@ package eol
 import (
 	"io"
 
-	"sourcecode.social/reiver/go-opt"
+	"github.com/reiver/go-opt"
 
-	"sourcecode.social/reiver/go-eol/nel"
+	"github.com/reiver/go-eol/nel"
 )
 
 // ReadNEL tries to read the "\u0085" (i.e., next-line) end-of-line sequence.
